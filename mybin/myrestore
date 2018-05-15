@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source myinclude
+
+mysql --user=root --password=$mysql_pw  $2 < $1 

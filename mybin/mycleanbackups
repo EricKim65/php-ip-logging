@@ -1,0 +1,6 @@
+#!/bin/bash
+source myinclude
+
+rm -rf $host_homedir/$1/backups/*.sql
+rm -rf $host_homedir/$1/backups/*.tar
+

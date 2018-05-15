@@ -1,0 +1,3 @@
+#!/bin/bash
+
+s3bucket="eth01-backup"

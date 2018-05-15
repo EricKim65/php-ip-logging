@@ -1,0 +1,2 @@
+0 2 * * * sudo -i backdaily
+30 0 1 1-12 * sudo -i certbot-renew > /var/log/letsencrypt-renew 2>&1

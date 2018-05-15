@@ -1,0 +1,5 @@
+find $1 -type f -name "$2" -exec readlink -f {} \; | cat >> /tmp/findfdel.sh
+#sed -i -e 's/^/vi /' /tmp/findfdel.sh
+#sed -i -e 's/^/rm -rf /' /tmp/findfdel.sh
+#sh /tmp/findfdel.sh 
+#vi /tmp/findfdel.sh 

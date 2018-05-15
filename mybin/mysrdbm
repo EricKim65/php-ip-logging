@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source myinclude
+
+#echo $public_dir
+cp -r  $common_dir"/srdbm" $public_dir/

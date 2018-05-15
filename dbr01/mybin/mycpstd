@@ -1,0 +1,11 @@
+
+#!/bin/bash
+
+source myinclude
+
+backupsdir=$host_homedir/$1/backups
+sqlfile=`ls -t $backupsdir/*.sql | head -n1`
+tarfile=`ls -t $backupsdir/*.tar | head -n1`
+
+cp $sqlfile $backupsdir/$1.sql
+cp $tarfile $backupsdir/$1.tar

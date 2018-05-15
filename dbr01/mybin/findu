@@ -1,0 +1,3 @@
+#!/bin/bash
+find $1 -user $2 | cat /tmp/finds.txt
+vi /tmp/finds.txt

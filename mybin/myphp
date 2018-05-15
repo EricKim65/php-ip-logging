@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source myinclude
+
+#echo $public_dir
+cp $common_dir"/phpinfo.php" $public_dir/
+chown -R  $1  $public_dir/phpinfo.php
+chgrp -R  apache $public_dir/phpinfo.php

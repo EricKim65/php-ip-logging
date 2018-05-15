@@ -1,0 +1,7 @@
+#!/bin/bash
+source myinclude
+
+myip=`dig +short myip.opendns.com @resolver1.opendns.com`
+/var/qmail/bin/qmail-qstat > /tmp/qmcheck.txt
+mail -s "[Dabory-Servers] : This is the mail deliver check for Server-"$myip  $1 < /tmp/qmcheck.txt
+exit 0

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source myinclude
+
+curr_hostdir=`pwd | cut -c7-` 
+#echo $curr_hostdir
+chown -R $curr_hostdir $1
+chgrp -R $curr_hostdir $1

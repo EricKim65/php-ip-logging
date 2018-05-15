@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TARGET_DB=$1_db
+source /usr/local/pmt/myinclude
+source /usr/local/mybin/myinclude
+
+mkdir -p $host_homedir/$1/backups
+mysqldump  -h$my_endpoint -u$my_admin_user -p$mysql_pw "$TARGET_DB" > $host_homedir"/$1/backups/$1-$(date +%y%m%d)_$(date +%H%M).sql"
+
+chown -R  $1  $host_homedir"/$1/backups/"
+chgrp -R  apache  $host_homedir"/$1/backups/"

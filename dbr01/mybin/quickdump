@@ -1,0 +1,1 @@
+mysqldump -uroot -poR3QtnD4HBDGRujM  biozoa_db > /var/zpanel/hostdata/biozoa/backups/quick.dump

@@ -1,0 +1,10 @@
+cd /var/zpanel/hostdata
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+   if [ "$dir" != "zadmin" ] && [ "$dir" != "wp381.org" ]; then 
+      echo "cleaning backups dir of  $dir ..." 
+      rm -rf /var/zpanel/hostdata/$dir/backups/*      
+   fi;
+done
+

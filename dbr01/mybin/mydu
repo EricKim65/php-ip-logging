@@ -1,0 +1,4 @@
+#!/bin/bash
+source myinclude
+
+du --max-depth=1 -h $1

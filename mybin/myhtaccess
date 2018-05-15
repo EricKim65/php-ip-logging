@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source myinclude
+cp $host_homedir"/$1/public_html/.htaccess" $host_homedir/$1/.htaccess-"$(date +%y%m%d)_$(date +%H%M)" 
+cp $host_homedir/htaccesses/.htaccess-$2 $host_homedir"/$1/public_html/.htaccess"
+cp $host_homedir/phpinfo.php $host_homedir"/$1/public_html/"
+chown -R  $1  $host_homedir"/$1/public_html/"
+chgrp -R  apache  $host_homedir"/$1/public_html/"

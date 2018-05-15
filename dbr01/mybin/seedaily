@@ -1,0 +1,17 @@
+#! /bin/bash
+
+source /usr/local/pmt/mys3
+source /usr/local/mybin/myinclude
+
+source /usr/local/mybin/mymntback
+
+cd $host_homedir
+backups_dir=$host_homedir/$1/backups
+mkdir -p $backups_dir
+
+filename=$1"*"
+
+ls -al $backdaily_dir/$filename
+
+cd /
+fusermount -u /backup

@@ -1,0 +1,11 @@
+sh /script/fixphp
+sh /script/fixweb
+sh /script/fixftp
+killall -9 php-fpm
+
+/etc/init.d/php-fpm restart
+#/etc/init.d/nginx restart
+/etc/init.d/httpd restart
+/etc/init.d/kloxo restart
+/etc/init.d/sshd restart
+/etc/init.d/pure-ftpd restart

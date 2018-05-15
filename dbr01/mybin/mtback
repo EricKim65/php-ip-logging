@@ -1,0 +1,2 @@
+#mount -t cifs //GB3.smileserv.com/GB3211013 /ntback01 -o username=GB3211013,password=kimhi65
+mount -t smbfs //GB3.smileserv.com/GB3211013 /ntback01 -o username=GB3211013,password=kimhi65

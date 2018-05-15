@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source myinclude
+
+for i in {0..6}; do ((keep[$(date +%Y%m%d -d "-$i day")]++)); done
+echo ${!keep[@]}

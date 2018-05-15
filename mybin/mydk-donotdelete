@@ -1,0 +1,15 @@
+#! /bin/bash
+
+open /Applications/Docker.app
+
+while_val=0
+while [ $while_val == 0 ]
+do
+    docker start mysqlc wpc myadminc 2>&- && while_val=1 || while_val=0
+    echo "docker is on loading ... code=" $while_val
+    sleep 3
+done
+echo "containers are running now !"
+docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=erics --name mysqlc -v "$PWD/database":/var/lib/mysql -d mysql
+docker run -e WORDPRESS_DB_PASSWORD=root --name wpc --link mysqlc:mysql -p 80:80 -v "$PWD/html":/var/www/html -d wp
+docker run --name myadminc -d --link mysqlc:db -p 8080:80 myadmin

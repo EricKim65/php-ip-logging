@@ -1,0 +1,20 @@
+#!/bin/bash
+source myinclude
+
+public_dir=$host_homedir/$1/public_html
+uploads_dir=$host_homedir/$1/public_html/wp-content/uploads
+kcp_pp_cli_file=$host_homedir/$1/public_html/wp-content/plugins/woosym-korean-localization/includes/lib/homekcp/bin/pp_cli
+
+chown -R $1 $public_dir/
+chgrp -R apache $public_dir/
+
+find $public_dir/ -type d -exec chmod 755 {} +
+find $public_dir/ -type f -exec chmod 644 {} +
+chmod 755 $kcp_pp_cli_file
+
+find $uploads_dir/ -type d -exec chmod 775 {} +
+find $uploads_dir/ -type f -exec chmod 664 {} +
+
+#chmod 755 $(find $public_dir/ -type d)
+#chmod 644 $(find $public_dir/ -type f)
+

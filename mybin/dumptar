@@ -1,0 +1,3 @@
+#!/bin/bash
+mydump "$1"
+mytar "$1"

@@ -1,0 +1,19 @@
+#!/bin/bash
+source myinclude
+
+kcp_pp_cli_file=$public_dir/wp-content/plugins/woosym-korean-localization/includes/lib/homekcp/bin/pp_cli
+kcp_pp_cli_file_sj=$public_dir/wp-content/plugins/woocommerce-kcp-kr/bin/pp_cli  # sangjugotgam
+kcp_pp_cli_file_bb=$public_dir/wp-content/plugins/ibnet-kcp/kcp/bin/pp_cli  $bbulmedia
+
+cache_dir=$public_dir/wp-content/plugins/special-recent-posts-2.4.7/cache # for sungduk
+cache_dir_dm=$public_dir/wp-content/plugins/download-manager/cache # for download manager
+cache_dir_fg=$public_dir/wp-content/plugins/radykal-fancy-gallery/admin/cache # for fancy gallery
+upload_dir_fg=$public_dir/wp-content/fancygallery # for uploaddir 
+
+find $uploads_dir/ -type d -exec chmod 555 {} +
+find $uploads_dir/ -type f -exec chmod 444 {} +
+
+if [ -d "$upload_dir_fg" ]; then # for fancy-gallery upload
+  find $upload_dir_fg/ -type d -exec chmod 555 {} +
+  find $upload_dir_fg/ -type f -exec chmod 444 {} +
+fi

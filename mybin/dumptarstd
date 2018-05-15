@@ -1,0 +1,3 @@
+#!/bin/bash
+mydumpstd "$1"
+mytarstd "$1"

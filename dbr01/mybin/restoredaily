@@ -1,0 +1,28 @@
+#! /bin/bash
+
+source /usr/local/pmt/mys3
+source /usr/local/mybin/myinclude
+
+goofys $s3bucket /backup 
+sleep 3
+
+cd $host_homedir
+backups_dir=$host_homedir/$1/backups
+mkdir -p $backups_dir
+
+filename=$1"-"$2
+
+#echo $backdaily_dir/$filename.sql.gz $backups_dir
+#echo $backdaily_dir/$filename.sql.gz $backups_dir
+cp $backdaily_dir/$filename.sql.gz $backups_dir
+cp $backdaily_dir/$filename.tar.gz $backups_dir
+gunzip $backups_dir/$filename.sql.gz
+gunzip $backups_dir/$filename.tar.gz
+
+chown  $1  $backups_dir/$filename.*
+chgrp  apache  $backups_dir/$filename.*
+
+echo "Backup files are restored at " $backups_dir
+
+cd /
+fusermount -u /backup

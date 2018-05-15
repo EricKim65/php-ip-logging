@@ -1,0 +1,4 @@
+#!/bin/bash
+source myinclude
+
+watch -n 1 -d "/var/qmail/bin/qmail-qstat"

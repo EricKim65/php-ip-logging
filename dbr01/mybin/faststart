@@ -1,0 +1,7 @@
+/etc/init.d/mysql start
+/etc/init.d/php-fpm start
+#/etc/init.d/nginx start
+/etc/init.d/httpd start
+/etc/init.d/kloxo start
+/etc/init.d/sshd start
+/etc/init.d/pure-ftpd start

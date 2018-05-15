@@ -1,0 +1,35 @@
+#! /bin/bash
+
+source myinclude
+
+CDIR=""
+cd $host_homedir
+
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+
+   if [ `echo $NOUSER_LIST | grep -c "|"$dir"|"` = 0 ] ; then
+
+      CDIR=$arch_dir
+      if [ ! -d "$CDIR" ]; then
+          echo "making new directory of $CDIR"
+          mkdir $CDIR
+      fi;
+             
+      echo "dumping mysql db of $dir into archive ..." 
+      mysqldump -uroot -p$mysql_pw  $dir'_db' > $CDIR/$dir-$(date +%y%m%d)_$(date +%H%M).dump
+      cd $host_homedir/$dir
+      echo "backng up with tar of $dir into archive..." `pwd`
+      tar cf $CDIR/$dir-$(date +%y%m%d)_$(date +%H%M).tar public_html/* 
+
+   else
+
+     cd $host_homedir/$dir
+     echo "backp system user with tar of $dir into archive..." 
+     tar cf $CDIR/$dir-$(date +%y%m%d)_$(date +%H%M).tar .
+
+   fi;
+done
+
+tar cf $CDIR/mybin-$(date +%y%m%d)_$(date +%H%M).tar /usr/local/mybin

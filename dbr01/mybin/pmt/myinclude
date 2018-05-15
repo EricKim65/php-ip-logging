@@ -1,0 +1,20 @@
+#!/bin/bash
+
+my_endpoint="localhost"
+mysql_pw="eGI7H7gjqWYkEfiDweGh"
+my_admin_user="root" 
+
+au_endpoint="ethan-aurora-new-cluster.cluster-czqdfowlpie1.ap-northeast-2.rds.amazonaws.com"
+aurora_pw="k99614791"
+au_admin_user="eth_aurora"
+
+#set priority on aurora_db if the database exists in aurora_rds 
+RESULT=`mysql -h$au_endpoint -u$au_admin_user -p$aurora_pw --skip-column-names -e "SHOW DATABASES LIKE '$TARGET_DB'"`
+if [ "$RESULT" == "$TARGET_DB" ]; then
+   my_endpoint=$au_endpoint
+   mysql_pw=$aurora_pw
+   my_admin_user=$au_admin_user
+   echo "=== Target database type is AURORA-DB ==="
+else
+   echo "Connected to MARIA-DB!"
+fi

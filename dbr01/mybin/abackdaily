@@ -1,0 +1,6 @@
+#! /bin/bash
+
+source /usr/local/mybin/myinclude
+
+goofys $s3bucket /backup
+

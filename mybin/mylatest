@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source myinclude
+
+sqlfile=`ls -t $host_homedir/$1/backups/*.sql | head -n1`
+tarfile=`ls -t $host_homedir/$1/backups/*.tar | head -n1`
+mysql --user=root --password=$mysql_pw  $1_db < $sqlfile 
+cd $host_homedir/$1 
+tar -xvf $tarfile 
+echo $sqlfile
+echo $tarfile

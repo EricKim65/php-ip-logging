@@ -1,0 +1,18 @@
+#!/bin/bash
+#!/bin/bash
+source myinclude
+
+wpins="wordpress-install"
+my_user_dir=$host_homedir/$1
+myins_dir=$host_homedir/$1/$wpins
+
+#echo  $common_dir/$wpins $my_user_dir
+#echo  $my_user_dir
+cp -r  $common_dir/$wpins $my_user_dir
+cp -r  $common_dir/srdbm $myins_dir
+chown -R  $1:apache  $myins_dir
+
+
+
+
+

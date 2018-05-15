@@ -1,0 +1,33 @@
+#! /bin/bash
+
+source myinclude
+
+mkdir -p $host_homedir/$2/backups
+dumptar $2
+
+sqlfile=$host_homedir/$1/backups/$1.sql
+tarfile=$host_homedir/$1/backups/$1.tar
+wp_config_back=$host_homedir/$2/wp-config.php
+
+if [ -f "$wp_config_back" ]; then
+  mv $wp_config_back $host_homedir/$2/wp-config-$(date +%y%m%d)_$(date +%H%M).php
+fi
+
+cp $host_homedir/$2/public_html/wp-config.php $wp_config_back 
+ 
+rm -rf $host_homedir/$2/public_html/*
+mydrop $2_db
+myrestore $sqlfile $2_db
+
+cd $host_homedir/$2 
+tar -xf $tarfile 
+
+rm -rf $host_homedir/$2/public_html/srdbm
+cp -r  $common_dir/srdbm $host_homedir/$2/public_html
+
+chown -R $2 `readlink -f $host_homedir/$2/public_html`
+chgrp -R apache `readlink -f $host_homedir/$2/public_html`
+
+chown -R $2 $host_homedir/$2/backups
+chgrp -R apache $host_homedir/$2/backups
+

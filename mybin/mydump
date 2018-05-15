@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#mysqldump -uroot -proot "erics" > "/Users/EricKim/backups/erics-$(date +%y%m%d)_$(date +%H%M).sql"
+mysqldump -uroot -proot "node_admin" > "/Users/EricKim/backups/node_admin.sql"

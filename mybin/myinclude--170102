@@ -1,0 +1,8 @@
+#!/bin/bash
+
+host_homedir="/home"
+arch_dir="/backup/home"
+mybin_dir="/usr/local/mybin"
+
+mysql_pw="oR3QtnD4HBDGRujM" 
+NOUSER_LIST="|admin|archive|centos|http|kloxo|lxadmin|nouser|php-fpm|phpini|vpopmail"

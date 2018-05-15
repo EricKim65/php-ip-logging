@@ -1,0 +1,8 @@
+#!/bin/bash
+
+TARGET_DB=$2
+source /usr/local/pmt/myinclude
+source /usr/local/mybin/myinclude
+
+mysql -h$my_endpoint -u$my_admin_user --password=$mysql_pw $TARGET_DB < $1
+

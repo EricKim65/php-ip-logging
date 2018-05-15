@@ -1,0 +1,3 @@
+#!/bin/bash
+chown -R apache $1
+chgrp -R apache $1

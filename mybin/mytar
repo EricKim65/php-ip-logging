@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source myinclude
+cd $host_homedir/$1
+mkdir -p $host_homedir/$1/backups
+tar cfh $host_homedir"/$1/backups/$1-$(date +%y%m%d)_$(date +%H%M).tar"  "public_html" 
+
+chown -R  $1  $host_homedir"/$1/backups/"
+chgrp -R  apache  $host_homedir"/$1/backups/"

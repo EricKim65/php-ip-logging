@@ -1,0 +1,10 @@
+if [ -z "$2" ]; then # if wordpress resides in subfolder 
+   sub_dir=""
+else
+   sub_dir=/$2
+fi
+
+public_dir=$host_homedir/$1/public_html$sub_dir
+
+common_dir=$host_homedir/dbr_common
+uploads_dir=$public_dir/wp-content/uploads

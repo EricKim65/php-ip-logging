@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source myinclude
+mysqldump --default-character-set=utf8 --default-collation=utf8_unicode_ci -uroot -p$mysql_pw  "$1_db" > $host_homedir"/$1/backups/$1-$(date +%y%m%d)_$(date +%H%M)_utf8.sql"

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+result_str=`service httpd status`
+if [ `echo $result_str | grep -c "stopped"` -gt 0 ] ; then
+  service httpd start  
+fi
+
+result_str=`service php-fpm status`
+if [ `echo $result_str | grep -c "stopped"` -gt 0 ] ; then
+  service php-fpm start  
+fi
+
+result_str=`service mysql status`
+if [ `echo $result_str | grep -c "not"` -gt 0 ] ; then
+  service mysql start  
+fi
+

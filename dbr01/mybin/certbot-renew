@@ -1,0 +1,3 @@
+sudo -i /usr/local/mybin/certbot-auto renew --force-renew 
+sudo service httpd restart
+sudo -i /usr/local/mybin/certbot-auto certificates

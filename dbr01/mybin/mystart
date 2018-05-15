@@ -1,0 +1,24 @@
+#!/bin/bash
+#touch /tmp/test-$(date +%y%m%d)_$(date +%H%M).txt
+
+log_file="/var/log/mystart.log"
+
+result_str=`/sbin/service httpd status`
+if [ `echo $result_str | grep -c "stopped"` -gt 0 ] ; then
+  /sbin/service httpd start  
+  echo "$(date +%y%m%d)_$(date +%H%M) : http-restarted-due-to-being-shutdowned" >> $log_file
+fi
+
+result_str=`/sbin/service php-fpm status`
+if [ `echo $result_str | grep -c "stopped"` -gt 0 ] ; then
+  /sbin/service php-fpm start  
+  echo "$(date +%y%m%d)_$(date +%H%M) : php-fpm-restarted-due-to-being-shutdowned" >> $log_file
+fi
+
+result_str=`/sbin/service mysql status`
+if [ `echo $result_str | grep -c "not"` -gt 0 ] ; then
+  /sbin/service mysql start  
+  echo "$(date +%y%m%d)_$(date +%H%M) : mysql-restarted-due-to-being-shutdowned" >> $log_file
+fi
+
+#touch /tmp/test2-$(date +%y%m%d)_$(date +%H%M).txt

@@ -1,0 +1,2 @@
+chown -R apache *
+chgrp -R apache *

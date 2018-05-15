@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source myinclude
+
+cd /home/$2
+mygetdabory /var/zpanel/hostdata/$1/$1.tar .
+tar xf $1.tar 
+tar xf backups/$1.tar 
+mydrop $2_db
+myrestore backups/$1.sql  $2_db
+mymelt $2

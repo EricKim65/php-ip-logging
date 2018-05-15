@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TARGET_DB=$1
+source /usr/local/pmt/myinclude
+source /usr/local/mybin/myinclude
+
+mysqldump -h$my_endpoint -u$my_admin_user -p$mysql_pw --no-data --add-drop-table $TARGET_DB | grep -e '^DROP \| FOREIGN_KEY_CHECKS' |mysql -h$my_endpoint -u$my_admin_user -p$mysql_pw $1  
+
+
+
+

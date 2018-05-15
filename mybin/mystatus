@@ -1,0 +1,25 @@
+#! /bin/bash
+
+source myinclude
+
+cat /dev/null > /etc/finds.txt
+
+CDIR=""
+cd $host_homedir
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+
+if [ `echo $NOUSER_LIST | grep -c "|"$dir"|"` = 0 ] ; then
+
+	ls -l $host_homedir/$dir/public_html/index.php
+	ls -l $host_homedir/$dir/public_html/index.php | cat >> /etc/finds.txt
+   #else
+
+   #   cd $host_homedir/$dir
+   #   echo "backp system user with tar of $dir into archive..." 
+   #   tar cf $CDIR/$dir-$(date +%y%m%d)_$(date +%H%M).tar .
+
+   fi;
+done
+vi /etc/finds.txt

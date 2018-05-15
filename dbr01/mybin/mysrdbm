@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source myinclude
+
+com_srdbm_dir=$common_dir"/srdbm"
+pub_srdbm_dir=$public_dir"/srdbm"
+cp -r  $com_srdbm_dir $pub_srdbm_dir
+
+#echo  $com_srdbm_dir
+#echo  $pub_srdbm_dir
+chown -R $1 $pub_srdbm_dir/
+chgrp -R apache $pub_srdbm_dir/
+
+

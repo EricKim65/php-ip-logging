@@ -1,0 +1,10 @@
+#!/bin/bash
+source myinclude
+
+#echo $uploads_dir
+chown -R root $uploads_dir/
+chgrp -R apache $uploads_dir/
+
+find $uploads_dir/ -type d -exec chmod 755 {} +
+find $uploads_dir/ -type f -exec chmod 644 {} +
+

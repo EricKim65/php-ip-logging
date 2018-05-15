@@ -1,0 +1,19 @@
+#!/bin/bash
+
+source myinclude
+mkdir -p $host_homedir/$1/backups
+dumptar $1
+
+wp_config_back=$host_homedir/$1/wp-config.php
+
+if [ -f "$wp_config_back" ]; then
+  mv $wp_config_back $host_homedir/$1/wp-config-$(date +%y%m%d)_$(date +%H%M).php
+fi
+
+cp $host_homedir/$1/public_html/wp-config.php $wp_config_back 
+ 
+rm -rf $host_homedir/$1/public_html/*
+mydrop $1_db
+
+chown -R  $1  $host_homedir"/$1/backups/"
+chgrp -R  apache  $host_homedir"/$1/backups/"

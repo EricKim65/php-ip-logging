@@ -1,0 +1,30 @@
+#! /bin/bash
+
+source myinclude
+textfile="/tmp/findphp.txt"
+
+cat /dev/null > $textfile
+
+CDIR=""
+cd $host_homedir
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+             
+   if [ `echo $NOUSER_LIST | grep -c "|"$dir"|"` = 0 ] ; then
+      find $host_homedir/$dir/public_html/wp-content/uploads -type f -name "*.php" | cat >> $textfile
+   fi;
+done
+
+sed -i -e 's/^/vi /' $textfile
+
+vi $textfile
+
+trap "set +x; sleep 5; set -x" DEBUG
+
+cat $textfile  | while read LINE
+
+do
+  eval "$LINE"
+  #echo $LINE
+done

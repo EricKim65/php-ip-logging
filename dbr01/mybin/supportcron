@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source /usr/local/pmt/myinclude
+source /usr/local/mybin/myinclude
+
+echo "* * * * * php -q /home/support/support.dabory.com/crons/cron.php" > /tmp/crontab_list
+su - support -c "crontab /tmp/crontab_list"

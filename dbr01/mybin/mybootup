@@ -1,0 +1,10 @@
+source /usr/local/pmt/myinclude
+source /usr/local/mybin/myinclude
+
+#sudo /usr/lib/golang/bin/goofys $s3bucket /backup
+#goofys $s3bucket /backup
+
+sudo -i mycronall-delete
+
+#indicate crontab list
+sudo -i crontab /usr/local/mybin/boot-crontab

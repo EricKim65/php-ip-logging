@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source myinclude
+
+mysqldump -uroot -p$mysql_pw --no-data --add-drop-table $1 | grep -e '^DROP \| FOREIGN_KEY_CHECKS' | mysql -uroot -p$mysql_pw $1  
+

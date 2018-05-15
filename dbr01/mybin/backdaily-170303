@@ -1,0 +1,68 @@
+#! /bin/bash
+
+source myinclude
+
+cd $host_homedir
+
+#if [ ! -d "$backdaily_dir" ]; then
+#    echo "making new directory of $backdaily_dir"
+#    mkdir $backdaily_dir
+#fi;
+
+mkdir -p $backdaily_dir 
+mkdir -p $backmonthly_dir 
+curr_day=$(date +%d)
+            
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+ 
+   filename=$dir-$(date +%y%m%d)
+
+   if [ `echo $NOUSER_LIST | grep -c "|"$dir"|"` = 0 ] ; then
+
+      echo "dumping mysql db of $dir into archive ..." 
+      mysqldump -uroot -p$mysql_pw  $dir'_db' > $backdaily_dir/$filename.sql
+      cd $host_homedir/$dir
+      echo "backng up with tar of $dir into archive..." `pwd`
+      tar czf $backdaily/$filename.tar.gz public_html/* 
+      gzip -f $backdaily_dir/$filename.sql
+      
+      if [ "$curr_day" = "03" ] ; then
+        cp /$backdaily/$filename.sql.gz $backmonthly_dir
+        cp /$backdaily/$filename.tar.gz $backmonthly_dir
+      fi
+
+   else
+
+     cd $host_homedir/$dir
+     echo "backp system user with tgz of $dir into archive..." 
+     tar czf /$backdaily/$filename.tar.gz  public_html/* 
+
+     if [ "$curr_day" = "03" ] ; then
+        cp /$backdaily/$filename.tar.gz $backmonthly_dir
+     fi
+
+   fi;
+done
+
+tar cfz $backdaily_dir/mybin-$(date +%y%m%d).tgz /usr/local/mybin
+
+for i in {0..6}; do ((keep[$(date +%Y%m%d -d "-$i day")]++)); done
+#echo ${!keep[@]}
+weekeep=${!keep[@]}
+
+cd $backdaily_dir 
+
+for backfile in ./*
+do
+  #echo "$backfile"
+  backday=$(echo $backfile| cut -d"-" -f 2 | cut -d"." -f 1)
+  #echo $backday
+
+  if [[ $weekeep != *$backday* ]]; then
+    echo $backfile" will be deleted !"
+    rm -f $backfile
+  fi;
+done
+

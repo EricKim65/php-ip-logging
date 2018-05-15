@@ -1,0 +1,2 @@
+find $1 -type f -name "*$2*" -exec grep -ri -l "$3" {} \; | cat > /tmp/finds.txt
+vi /tmp/finds.txt 

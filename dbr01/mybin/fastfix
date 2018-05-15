@@ -1,0 +1,17 @@
+sh /script/fixphp
+sh /script/fixweb
+sh /script/fixftp
+killall -9 php-fpm
+
+/etc/init.d/php-fpm restart
+#/etc/init.d/nginx restart
+
+# recover local-conf to domains/*.conf
+#source /usr/local/mybin/pmt/httpd.domains.conf.cp 
+# recover local-conf to domains/*.conf
+cp /opt/configs/apache/conf/domains/local-conf/*.conf /opt/configs/apache/conf/domains
+
+/etc/init.d/httpd restart
+/etc/init.d/kloxo restart
+/etc/init.d/sshd restart
+/etc/init.d/pure-ftpd restart

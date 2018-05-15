@@ -1,0 +1,19 @@
+#! /bin/bash
+
+source /usr/local/pmt/mys3
+
+
+while_val=0
+while [ $while_val == 0 ]
+do
+    goofys $s3bucket /backup
+    mount | grep backup
+    if [ $? == 0 ] ; then
+       while_val=1
+    else
+       cd /
+       rm -rf /backup/*
+    fi
+    echo $while_val
+    sleep 2
+done

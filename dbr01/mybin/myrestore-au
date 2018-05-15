@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source myinclude
+
+mysql -hdbr-aurora.clhvwtdfc3ov.ap-northeast-2.rds.amazonaws.com -udbr_admin --password=k99614791 $2 < $1

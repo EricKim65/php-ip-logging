@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source myinclude
+
+cdb_file=$host_homedir"/$1/cdb.tar" 
+httpd_file=$host_homedir"/$1/httpd.tar" 
+profile_file=$host_homedir"/$1/bash_profile.tar" 
+dbr_common_file=$host_homedir"/$1/dbr_common.tar" 
+
+cd /usr/local
+tar cfh $cdb_file "mybin" 
+chown $1  $cdb_file
+chgrp apache $cdb_file 
+
+cd /etc/httpd/conf.d
+tar cf $httpd_file ~lxcenter.conf 
+chown $1  $httpd_file
+chgrp apache $httpd_file 
+
+cd /root
+tar cf $profile_file .bash_profile .dbrhost_include
+chown $1  $profile_file
+chgrp apache $profile_file 
+
+cd $host_homedir
+tar cf $dbr_common_file "dbr_common" 
+chown $1  $dbr_common_file
+chgrp apache $dbr_common_file 
+

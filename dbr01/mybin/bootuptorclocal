@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "sudo -i mybootup" >> /etc/rc.d/rc.local

@@ -1,0 +1,22 @@
+SDIR="/var/zpanel/hostdata"
+TDIR="/var/zpanel/archive"
+CDIR=""
+cd $SDIR
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+   if [ "$dir" != "zadmin" ] && [ "$dir" != "wp381.org" ]; then 
+      CDIR=$TDIR/
+      if [ ! -d "$CDIR" ]; then
+          echo "making new directory of $CDIR"
+          mkdir $CDIR
+      fi;
+             
+      echo "dump mysql db of $dir into archive ..." 
+      mysqldump -uroot -poR3QtnD4HBDGRujM  $dir'_db' > $CDIR/$dir-$(date +%y%m%d)_$(date +%k%M).dump
+#      cd $SDIR/$dir
+#      echo "backp with tar of $dir into archive..." 
+#      tar cf $CDIR/$dir-$(date +%y%m%d)_$(date +%k%M).tar public_html 
+   fi;
+done
+cp -a /usr/local/bin $TDIR/usrlocalbin

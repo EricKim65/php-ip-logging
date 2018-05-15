@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source myinclude
+#tmp_file=/tmp/myseddb.tmp 
+cp $1 $2 
+sed -i 's/$3/$4/g' $2

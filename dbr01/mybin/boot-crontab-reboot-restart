@@ -1,0 +1,3 @@
+0 2 * * * sudo -i backdaily
+#1 * * * * sudo -i mystart
+#0 4 * * * sudo -i reboot

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source myinclude
+echo $host_homedir
+echo kkk
+echo kkk
+echo kkk
+echo kkk
+mkdir -p $host_homedir/$1/backups
+mysqldump -uroot -p$mysql_pw  "$1_db" > $host_homedir"/$1/backups/$1-$(date +%y%m%d)_$(date +%H%M).sql"
+
+chown -R  $1  $host_homedir"/$1/backups/"
+chgrp -R  apache  $host_homedir"/$1/backups/"

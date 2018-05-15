@@ -1,0 +1,8 @@
+echo "=============== mysql check ================"
+service mysql status
+echo ""
+echo "=============== apache check ================"
+/etc/init.d/httpd status
+echo ""
+echo "=============== php-fpm check ================"
+ps aux | grep php-fpm

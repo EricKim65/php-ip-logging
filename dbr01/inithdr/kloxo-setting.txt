@@ -1,0 +1,29 @@
+
+===========  Kloxo-MR 설치=============
+* sh install-kloxo.sh 
+* sh update-lang.sh
+* sh update-mybin.sh
+* cd .. ; rm -rf init* 
+ 로 정리할 것 
+===========  Kloxo-MR 설치 직후에 =============
+* home - appearance Tab Menu - Skin 한글로 수정
+* 관리자 패스워드 수정 : 관리-패스워드에서 수정
+* 웹메일-서버메일 설정 daboryhost.com으로 수정하면 대형포털의 메일로 발송가능함.
+* DNS Template 설정 : 시스템자원-DNS Template에서 임의의 네임서버로 설정
+* 웹서버 설정에서 각버전의 Php 설치
+  복수의 php 전부 select 하여 update 하면 설치과정이 시작되면서 기다림.
+  F5로 새로고침하면서 보면서 php 7.1가지 Php버전의 select 박스에 모든 php가 리스팅
+  될때까지 기다림.
+* 보안정책-ssh 포트에서 24357로 변경
+* 고급-포트설정에서 9961로 변경하고 service sshd reload(restart)로 재시작후에
+  웹브라우저에서 로그인해서 확인
+* 호스팅 상품 추가 및 첫번째 사용자 추가
+* 웹메일데이터베이스에서 MySQL 비밀번호 리셋으로 root 비밀번호 세팅후에
+  /usr/local/pmt/myinclude 화일을 세팅한다.
+
+=============사용자 추가시==========
+
+* cloudflare나 도메인에서 네임서버 레코드에 호스팅 정보 추가
+* kloxo 의 계정에서 도메인 설정하면 브라우저에서 해당 url로 kloxo 초기 페이지를 확인
+* FTP 계정 만들기
+* DB 계정 만들기

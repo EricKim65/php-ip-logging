@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source myinclude
+mysql -uroot -p$mysql_pw

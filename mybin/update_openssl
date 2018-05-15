@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd /usr/local/src
+
+# version exist check needed in ftp://ftp.openssl.org/source/
+wget ftp://ftp.openssl.org/source/openssl-1.0.1u.tar.gz
+
+tar xzvf openssl-1.0.1u.tar.gz 
+cd openssl-1.0.1u
+./config
+make
+make install
+
+# mv old openssl to the other directory - shoul be deleted later
+mv /usr/bin/openssl /root/
+ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
+
+# check if version is properly installed
+echo "======Now check openssl version !!==========="
+openssl version
+echo "============================================="

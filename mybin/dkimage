@@ -1,0 +1,5 @@
+#! /bin/bash
+
+docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=erics --name mysqlc -v "/Users/EricKim/database":/var/lib/mysql -d mysql
+docker run -e WORDPRESS_DB_PASSWORD=root --name wpc --link mysqlc:mysql -p 80:80 -v "/Users/EricKim/html":/var/www/html -d wp
+docker run --name myadminc -d --link mysqlc:db -p 8080:80 myadmin

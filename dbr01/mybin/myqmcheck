@@ -1,0 +1,7 @@
+#!/bin/bash
+source myinclude
+
+/var/qmail/bin/qmail-qstat > /tmp/qmcheck.txt
+mail -s "[Dabory-Servers] : Seoul-A : qmail health check " kimhi65@gmail.com < /tmp/qmcheck.txt
+exit 0
+

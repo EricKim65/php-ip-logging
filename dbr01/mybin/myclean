@@ -1,0 +1,18 @@
+#! /bin/bash
+
+source myinclude
+
+CDIR=""
+cd $host_homedir
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+             
+if [ `echo $NOUSER_LIST | grep -c "|"$dir"|"` = 0 ] ; then
+
+      rm -rf $host_homedir/$dir/public_html/srdbm
+      rm -f $host_homedir/$dir/public_html/phpinfo.php
+
+   fi;
+done
+

@@ -1,0 +1,18 @@
+#!/bin/bash
+source myinclude
+
+wskl="woocommerce"
+wskl_dir=$host_homedir/$1/public_html/wp-content/plugins/$wskl
+wp_content_dir=$host_homedir/$1/public_html/wp-content
+wp_plugins_dir=$wp_content_dir/plugins
+
+if [ -d "$wskl_dir" ]; then
+  mv $wskl_dir $wp_content_dir/$wskl-$(date +%y%m%d)_$(date +%H%M)
+fi
+
+#echo  $host_homedir/$wskl"===="$wp_plugins_dir/
+#cp -r  $host_homedir/$wskl $wp_plugins_dir/
+cp -r  $common_dir/$wskl $wp_plugins_dir/
+chown -R  $1  $wskl_dir
+chgrp -R  apache $wskl_dir
+

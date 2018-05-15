@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source myinclude
+
+cd $host_homedir/$1
+rm -rf backups/*
+dumptarstd $1
+tar cf $1.tar backups
+
+rm -rf backups/*

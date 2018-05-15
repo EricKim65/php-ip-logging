@@ -1,0 +1,17 @@
+#!/bin/bash
+
+host_homedir="/home"
+arch_dir="/backup/home"
+backdaily_dir="/backup/daily"
+backmonthly_dir="/backup/monthly"
+mybin_dir="/usr/local/mybin"
+
+#source "/usr/local/pmt/myinclude"
+NOUSER_LIST="admin|archive|centos|httpd|kloxo|lxadmin|nouser|php-fpm|phpini|vpopmail"
+
+#below was copied from my__include_dir on 02 Jan 2017
+
+public_dir=$host_homedir/$1/public_html
+
+common_dir=/usr/local/mybin/dbr_common
+uploads_dir=$public_dir/wp-content/uploads

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source myinclude
+
+mysqldump -hdbr-aurora.clhvwtdfc3ov.ap-northeast-2.rds.amazonaws.com -udbr_admin -pk99614791 --no-data --add-drop-table $1 | grep -e '^DROP \| FOREIGN_KEY_CHECKS' | mysql -hdbr-aurora.clhvwtdfc3ov.ap-northeast-2.rds.amazonaws.com -udbr_admin -pk99614791 $1  
+

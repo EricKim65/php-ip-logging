@@ -1,0 +1,2 @@
+find . -type f -name "*$1*" -exec grep -nHo "$2" {} \; | cat > /tmp/finds.txt
+vi /tmp/finds.txt 

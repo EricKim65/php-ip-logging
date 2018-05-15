@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source myinclude
+mysqldump -uroot -p$mysql_pw  "$1_db" > $host_homedir"/$1/backups/$1-$(date +%y%m%d)_$(date +%k%M).sql"
+
+host_homedir="/var/zpanel/hostdata"
+cd $host_homedir
+for f in `ls -F | grep "/"` ; do
+   len=`expr ${#f} - 1`
+   dir=${f:0:len}
+   if [ "$dir" != "zadmin" ] && [ "$dir" != "wp381.org" ]; then 
+      du -sh $host_homedir/$dir      
+   fi;
+done
+

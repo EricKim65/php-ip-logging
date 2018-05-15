@@ -1,0 +1,28 @@
+#!/bin/bash
+source myinclude
+
+kcp_pp_cli_file=$public_dir/wp-content/plugins/woosym-korean-localization/includes/lib/homekcp/bin/pp_cli
+kcp_pp_cli_file_sj=$public_dir/wp-content/plugins/woocommerce-kcp-kr/bin/pp_cli  # sangjugotgam
+kcp_pp_cli_file_bb=$public_dir/wp-content/plugins/ibnet-kcp/kcp/bin/pp_cli  $bbulmedia
+
+chown -R $1 $public_dir/
+chgrp -R apache $public_dir/
+
+find $public_dir/ -type d -exec chmod 755 {} +
+find $public_dir/ -type f -exec chmod 644 {} +
+
+if [ -f "$kcp_pp_cli_file" ]; then
+  chmod 755 $kcp_pp_cli_file
+fi
+
+if [ -f "$kcp_pp_cli_file_sj" ]; then
+  chmod 755 $kcp_pp_cli_file_sj
+fi
+
+if [ -f "$kcp_pp_cli_file_bb" ]; then
+  chmod 755 $kcp_pp_cli_file_bb
+fi
+
+#chmod 755 $(find $public_dir/ -type d)
+#chmod 644 $(find $public_dir/ -type f)
+
